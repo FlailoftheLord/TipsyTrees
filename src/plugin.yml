@@ -1,0 +1,17 @@
+name: TipsyTrees
+prefix: TipsyTrees
+
+author: FlailoftheLord
+description: plant tons of treess!! yay!
+version: 1.0
+api-version: 1.13
+
+main: me.flail.tipsytrees.TipsyTrees
+soft-depend: [WorldGuard, CoreProtect, WorldEdit]
+loadbefore: [MicroCommands]
+
+commands:
+
+  tipsytrees:
+    description: plant a tree
+    aliases: [tree, tt]
