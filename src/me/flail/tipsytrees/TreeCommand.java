@@ -26,7 +26,14 @@ public class TreeCommand {
 
 			Location targetLocation = player.getTargetBlockExact(64).getLocation();
 
+			int x = targetLocation.getBlockX();
+			int y = targetLocation.getBlockY();
+			int z = targetLocation.getBlockZ();
+
 			Material oldType = playerWorld.getBlockAt(targetLocation).getType();
+			Material oldType2 = playerWorld.getBlockAt(x + 1, y, z).getType();
+			Material oldType3 = playerWorld.getBlockAt(x, y, z + 1).getType();
+			Material oldType4 = playerWorld.getBlockAt(x + 1, y, z + 1).getType();
 
 			playerWorld.getBlockAt(targetLocation).setType(Material.DIRT);
 
@@ -167,13 +174,16 @@ public class TreeCommand {
 
 				}
 
-			}, 3);
+			}, 1);
 
 			plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
 
 				playerWorld.getBlockAt(targetLocation).setType(oldType);
+				playerWorld.getBlockAt(x + 1, y, z).setType(oldType2);
+				playerWorld.getBlockAt(x, y, z + 1).setType(oldType3);
+				playerWorld.getBlockAt(x + 1, y, z + 1).setType(oldType4);
 
-			}, 6);
+			}, 3);
 
 		} catch (NullPointerException e) {
 
