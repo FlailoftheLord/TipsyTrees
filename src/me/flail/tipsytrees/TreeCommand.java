@@ -4,7 +4,6 @@ import java.util.Locale;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.TreeType;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
@@ -48,129 +47,14 @@ public class TreeCommand {
 							"<prefix> &aYour server is running TipsyTrees &7version <version> &2by FlailoftheLord"));
 					break;
 
-				case "oak":
-					playerWorld.generateTree(newLoc, TreeType.TREE);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "wood":
-					playerWorld.generateTree(newLoc, TreeType.TREE);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "tree":
-					playerWorld.generateTree(newLoc, TreeType.TREE);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "bigoak":
-					playerWorld.generateTree(newLoc, TreeType.BIG_TREE);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "bigtree":
-					playerWorld.generateTree(newLoc, TreeType.BIG_TREE);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "largetree":
-					playerWorld.generateTree(newLoc, TreeType.BIG_TREE);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "largeoak":
-					playerWorld.generateTree(newLoc, TreeType.BIG_TREE);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "big_oak":
-					playerWorld.generateTree(newLoc, TreeType.BIG_TREE);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "big_tree":
-					playerWorld.generateTree(newLoc, TreeType.BIG_TREE);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "large_oak":
-					playerWorld.generateTree(newLoc, TreeType.BIG_TREE);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "large_tree":
-					playerWorld.generateTree(newLoc, TreeType.BIG_TREE);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "spruce":
-					playerWorld.generateTree(newLoc, TreeType.REDWOOD);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "redwood":
-					playerWorld.generateTree(newLoc, TreeType.MEGA_REDWOOD);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "tallspruce":
-					playerWorld.generateTree(newLoc, TreeType.TALL_REDWOOD);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "tall_spruce":
-					playerWorld.generateTree(newLoc, TreeType.TALL_REDWOOD);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "jungle":
-					playerWorld.generateTree(newLoc, TreeType.SMALL_JUNGLE);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "tall_jungle":
-					playerWorld.generateTree(newLoc, TreeType.JUNGLE);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "talljungle":
-					playerWorld.generateTree(newLoc, TreeType.JUNGLE);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "largejungle":
-					playerWorld.generateTree(newLoc, TreeType.JUNGLE);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "large_jungle":
-					playerWorld.generateTree(newLoc, TreeType.JUNGLE);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "bush":
-					playerWorld.generateTree(newLoc, TreeType.JUNGLE_BUSH);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated bush!"));
-					break;
-				case "junglebush":
-					playerWorld.generateTree(newLoc, TreeType.JUNGLE_BUSH);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated bush!"));
-					break;
-				case "birch":
-					playerWorld.generateTree(newLoc, TreeType.BIRCH);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "tallbirch":
-					playerWorld.generateTree(newLoc, TreeType.TALL_BIRCH);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "tall_birch":
-					playerWorld.generateTree(newLoc, TreeType.TALL_BIRCH);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "acacia":
-					playerWorld.generateTree(newLoc, TreeType.ACACIA);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "orangewood":
-					playerWorld.generateTree(newLoc, TreeType.ACACIA);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "dark":
-					playerWorld.generateTree(newLoc, TreeType.DARK_OAK);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "darkoak":
-					playerWorld.generateTree(newLoc, TreeType.DARK_OAK);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
-				case "dark_oak":
-					playerWorld.generateTree(newLoc, TreeType.DARK_OAK);
-					player.sendMessage(plugin.tools.chat("<prefix> &agenerated tree!"));
-					break;
 				default:
-					player.sendMessage(
-							plugin.tools.chat("<prefix> &cInvalid Tree type! type &7/tree help &cfor valid types"));
+					if (plugin.tools.treeType(attribute) != null) {
+						playerWorld.generateTree(newLoc, plugin.tools.treeType(attribute.toLowerCase()));
+						player.sendMessage(plugin.tools.chat("<prefix> &aGenerated &7" + attribute + "&a!"));
+					} else {
+						player.sendMessage(
+								plugin.tools.chat("<prefix> &cInvalid Tree type! type &7/tree help &cfor valid types"));
+					}
 
 				}
 
@@ -185,7 +69,7 @@ public class TreeCommand {
 
 			}, 3);
 
-		} catch (NullPointerException e) {
+		} catch (Throwable t) {
 
 			player.sendMessage(plugin.tools.chat("<prefix> &cTrees cannot be generated on a liquid block or air!"));
 
